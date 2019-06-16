@@ -6,13 +6,14 @@ describe('MessagesService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [MessagesService],
+      providers: [MessagesService]
     }).compile();
 
     service = module.get<MessagesService>(MessagesService);
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+  it('test1', () => {
+    expect('PATRICK').toBe('PATRICK');
   });
+
 });

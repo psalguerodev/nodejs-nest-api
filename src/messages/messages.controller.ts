@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Get, Put, Delete, Param, Res, HttpStatus } from '@nestjs/common';
-import { CreateMessageDto } from './dto/create-message-dto';
-import { MessagesService } from '../services/messages/messages.service';
+import { CreateMessageDto } from './dto/CreateMessage.dto';
+import { MessagesService } from './services/messages/messages.service';
 import { Response } from 'express';
 
 @Controller('messages')
@@ -24,7 +24,7 @@ export class MessagesController {
      })
      .catch(error => {
        response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({message: `Error ${error}`});
-     })
+     });
   }
 
   @Get(':id')
@@ -37,7 +37,7 @@ export class MessagesController {
   }
 
   @Put(':id')
-  update(@Param() params, @Body() createMessageDto: CreateMessageDto, , @Res() response: Response) {
+  update(@Param() params, @Body() createMessageDto: CreateMessageDto, @Res() response: Response) {
     this.messageService.updateOne(params.id, createMessageDto).then(message => {
       response.status(HttpStatus.CREATED).json(message);
     })

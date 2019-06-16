@@ -7,6 +7,6 @@ export class AppService {
     return `Hola ${name.toUpperCase()}`;
   }
   getHello(): string {
-    return 'Hello Ingeniero Patrick Salguero2!';
+    return 'Hello World!';
   }
 }

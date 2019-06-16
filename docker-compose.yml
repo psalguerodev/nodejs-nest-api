@@ -1,0 +1,27 @@
+
+version: "3"
+services:
+  db:
+    build: db
+    networks:
+      - webnet
+    environment:
+      - "MYSQL_DATABASE=sendmeapp_db"
+      - "MYSQL_USER=psalguero"
+      - "MYSQL_PASSWORD=softpatrick123"
+      - "MYSQL_ROOT_PASSWORD=softpatrick123"
+      - "MYSQL_ALLOW_EMPTY_PASSWORD=false"
+    ports:
+      - 3306
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    networks:
+      - webnet
+    environment:
+      DATABASE_HOST: db
+    depends_on:
+      - db
+networks:
+  webnet:
